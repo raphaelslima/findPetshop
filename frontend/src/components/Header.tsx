@@ -1,6 +1,7 @@
 import Image from 'next/image';
 
 import logoDIT from '../../public/logoDTI.png';
+import Button from './Button';
 
 const Header = () => {
   return (
@@ -9,9 +10,7 @@ const Header = () => {
         <Image src={logoDIT} alt="Logo DTI" width={48} height={48} />
       </div>
       <div>
-        <button className="p-2 border rounded-lg bg-primary-blue text-primary-white cursor-pointer hover:scale-105">
-          Fazer login
-        </button>
+        <Button>Fazer login</Button>
       </div>
     </header>
   );
