@@ -1,0 +1,1 @@
+Configuração de projeto Next.js: https://www.youtube.com/watch?v=xbrM3aKotao&t=151s
