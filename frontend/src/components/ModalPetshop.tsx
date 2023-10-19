@@ -74,15 +74,15 @@ const ModalPetshop = () => {
   return (
     <>
       {showChoosePetshop && (
-        <section className="absolute min-h-screen w-screen bg-primary-black opacity-80 flex justify-center">
-          <div className="bg-primary-white text-primary-blue p-4 rounded-md w-3/4 h-1/4 mt-8 flex flex-col justify-center items-center gap-2">
+        <section className="absolute h-[85vh] w-screen bg-primary-black opacity-80 flex justify-center items-center">
+          <div className="bg-dark-blue text-primary-white p-4 rounded-md w-3/4 h-2/4 flex flex-col justify-between items-center ">
             <p className="text-lg font-bold w-full align-middle">
               Petshop: {bestNamePetshops} <br /> Valor:{' '}
               {formatNumberToMoney(bestValuePetshop)}
             </p>
             <button
               onClick={() => closeModal()}
-              className="border-2 border-primary-blue p-2 rounded-md hover:bg-primary-blue hover:text-primary-white transition-all duration-300 hover:scale-105"
+              className="border-2 w-11/12 p-2 rounded-md bg-primary-white text-primary-blue transition-all duration-300 hover:scale-105 md:w-1/2"
             >
               Fechar
             </button>

@@ -95,14 +95,17 @@ const Form = () => {
   return (
     <form
       onSubmit={handleSubmit(handleForm)}
-      className="bg-primary-white w-11/12 flex flex-col items-center justify-between p-4 rounded-lg mt-4"
+      className="bg-primary-white w-11/12 flex flex-col items-center justify-between p-4 rounded-lg mt-4 md:max-w-5xl"
     >
-      <h1 className="w-full text-primary-blue font-semibold text-center text-base">
+      <h1 className="w-full text-primary-blue font-semibold text-center text-base md:text-lg">
         Qual o melhor petshop para você?
       </h1>
-      <div className="w-full flex flex-col justify-center items-center gap-4 my-4">
+      <div className="w-full flex flex-col md:flex-row justify-center md:justify-between items-center gap-4 my-4">
         <div className="w-full flex flex-col gap-1">
-          <label htmlFor="date" className="text-primary-blue text-sm">
+          <label
+            htmlFor="date"
+            className="text-primary-blue text-sm md:text-md"
+          >
             Data do banho:
           </label>
           <input
@@ -115,8 +118,11 @@ const Form = () => {
           )}
         </div>
         <div className="w-full flex flex-col gap-1">
-          <label htmlFor="qtdLitleDogs" className="text-primary-blue text-sm">
-            Quantidade de pets de porte pequeno:
+          <label
+            htmlFor="qtdLitleDogs"
+            className="text-primary-blue text-sm md:text-md"
+          >
+            Quantidade de pets (P):
           </label>
           <input
             type="number"
@@ -128,8 +134,11 @@ const Form = () => {
           )}
         </div>
         <div className="w-full flex flex-col gap-1">
-          <label htmlFor="qtdBigDogs" className="text-primary-blue text-sm">
-            Quantidade de pets de porte grande:
+          <label
+            htmlFor="qtdBigDogs"
+            className="text-primary-blue text-sm md:text-md"
+          >
+            Quantidade de pets (G):
           </label>
           <input
             type="number"
