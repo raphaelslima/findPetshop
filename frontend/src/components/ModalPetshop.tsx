@@ -41,10 +41,34 @@ const ModalPetshop = () => {
 
       const minValue = Math.min(...valuesOfPetshops);
 
-      const indexBestPetshop = valuesOfPetshops.indexOf(minValue);
+      const cheapPetShop: Petshop[] = [];
 
-      setBestNamePetshops(petshops[indexBestPetshop].name);
-      setBestValuePetshops(minValue);
+      petshops.forEach((petshop, i) => {
+        if (valuesOfPetshops[i] === minValue) {
+          cheapPetShop.push(petshop);
+        }
+      });
+
+      if (cheapPetShop.length === 1) {
+        const indexBestPetshop = valuesOfPetshops.indexOf(minValue);
+
+        setBestNamePetshops(petshops[indexBestPetshop].name);
+        setBestValuePetshops(minValue);
+      } else {
+        const DistancePetshop: number[] = [];
+        cheapPetShop.forEach((petshop) => {
+          DistancePetshop.push(petshop.distance);
+        });
+
+        const minDistance = Math.min(...DistancePetshop);
+
+        const bestPetshopClose = petshops.filter(
+          (petshop) => petshop.distance === minDistance
+        );
+
+        setBestNamePetshops(bestPetshopClose[0].name);
+        setBestValuePetshops(minValue);
+      }
     } else {
       const qtdLittleDogs = shower.qtdLitleDogs;
       const qtdBigDogs = shower.qtdBigDogs;
@@ -53,17 +77,40 @@ const ModalPetshop = () => {
 
       petshops.forEach((petshop) => {
         valuesOfPetshops.push(
-          qtdLittleDogs * petshop.priceOfWeekToLittleDogs +
-            qtdBigDogs * petshop.priceOfWeekToBigDogs
+          qtdLittleDogs * petshop.priceOfWeekeendToLittleDogs +
+            qtdBigDogs * petshop.priceOfWeekeendToBigDogs
         );
       });
 
       const minValue = Math.min(...valuesOfPetshops);
 
-      const indexBestPetshop = valuesOfPetshops.indexOf(minValue);
+      const cheapPetShop: Petshop[] = [];
 
-      setBestNamePetshops(petshops[indexBestPetshop].name);
-      setBestValuePetshops(minValue);
+      petshops.forEach((petshop) => {
+        const petshopMin =
+          qtdLittleDogs * petshop.priceOfWeekToLittleDogs +
+          qtdBigDogs * petshop.priceOfWeekToBigDogs;
+
+        if (petshopMin === minValue) {
+          cheapPetShop.push(petshop);
+        }
+      });
+
+      if (cheapPetShop.length === 1) {
+        const indexBestPetshop = valuesOfPetshops.indexOf(minValue);
+
+        setBestNamePetshops(petshops[indexBestPetshop].name);
+        setBestValuePetshops(minValue);
+      } else {
+        setDistancePetshops(cheapPetShop[1].distance);
+        cheapPetShop.forEach((petshop) => {
+          if (petshop.distance < distancePetshops) {
+            setBestNamePetshops(petshop.name);
+            setDistancePetshops(petshop.distance);
+            setBestValuePetshops(minValue);
+          }
+        });
+      }
     }
   };
 
