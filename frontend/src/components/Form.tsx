@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { DogShowerContext } from '@/context/dogShower';
-import { formatStringToDate } from '@/helpers/date';
+import { formatStringToDate } from '@/helpers/formatDate';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
@@ -42,7 +42,7 @@ const Form = () => {
     }
   });
 
-  const { shower, setShower } = useContext(DogShowerContext);
+  const { setShower, setShowChoosePetshop } = useContext(DogShowerContext);
 
   const handleForm = (data: any) => {
     const dateShowerPet = formatStringToDate(data.date);
@@ -88,13 +88,14 @@ const Form = () => {
       return;
     }
     setShower(data);
+    setShowChoosePetshop(true);
     reset();
   };
 
   return (
     <form
       onSubmit={handleSubmit(handleForm)}
-      className="bg-primary-white w-full flex flex-col items-center justify-between p-4 rounded-lg"
+      className="bg-primary-white w-11/12 flex flex-col items-center justify-between p-4 rounded-lg mt-4"
     >
       <h1 className="w-full text-primary-blue font-semibold text-center text-base">
         Qual o melhor petshop para você?

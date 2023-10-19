@@ -6,6 +6,8 @@ import { DogShower } from '@/types/DogShower';
 type DogShowerProviderProps = {
   shower: DogShower;
   setShower: (shower: DogShower) => void;
+  showChoosePetshop: boolean;
+  setShowChoosePetshop: (showChoosePetshop: boolean) => void;
 };
 
 const DogShowerContext = createContext<DogShowerProviderProps>(
@@ -19,8 +21,12 @@ const DogShowerProvider = ({ children }: { children: React.ReactNode }) => {
     qtdBigDogs: 0
   });
 
+  const [showChoosePetshop, setShowChoosePetshop] = useState(false);
+
   return (
-    <DogShowerContext.Provider value={{ shower, setShower }}>
+    <DogShowerContext.Provider
+      value={{ shower, setShower, showChoosePetshop, setShowChoosePetshop }}
+    >
       {children}
     </DogShowerContext.Provider>
   );
