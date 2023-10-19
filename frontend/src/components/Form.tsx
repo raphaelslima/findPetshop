@@ -1,7 +1,9 @@
 'use client';
 
+import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 
+import { DogShowerContext } from '@/context/dogShower';
 import { formatStringToDate } from '@/helpers/date';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -39,6 +41,8 @@ const Form = () => {
       qtdBigDogs: 0
     }
   });
+
+  const { shower, setShower } = useContext(DogShowerContext);
 
   const handleForm = (data: any) => {
     const dateShowerPet = formatStringToDate(data.date);
@@ -83,7 +87,7 @@ const Form = () => {
 
       return;
     }
-    console.log(data);
+    setShower(data);
     reset();
   };
 

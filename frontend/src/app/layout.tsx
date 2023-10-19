@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 
 import Header from '@/components/Header';
+import { DogShowerProvider } from '@/context/dogShower';
 
 const roboto = Roboto({
   weight: ['400', '500', '700'],
@@ -20,10 +21,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="pt-br">
       <body className={roboto.className}>
-        <Header />
-        {children}
+        <DogShowerProvider>
+          <Header />
+          {children}
+        </DogShowerProvider>
       </body>
     </html>
   );
