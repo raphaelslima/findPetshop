@@ -4,10 +4,13 @@ import { useContext, useEffect, useState } from 'react';
 import { DogShowerContext } from '@/context/dogShower';
 import { formatStringToDate } from '@/helpers/formatDate';
 import { formatNumberToMoney } from '@/helpers/formatNumberToMoney';
-import { database } from '@/mock/petshops';
 import { Petshop } from '@/types/Petshop';
 
 const ModalPetshop = () => {
+  const getAllPetshops = async () => {
+    const res = await fetch(`http://localhost:8000/petshops`);
+    return res.json();
+  };
   const { shower, showChoosePetshop, setShowChoosePetshop } =
     useContext(DogShowerContext);
 
@@ -16,7 +19,13 @@ const ModalPetshop = () => {
   const [bestValuePetshop, setBestValuePetshops] = useState(0);
 
   useEffect(() => {
-    setPetshops(database);
+    const fetchPetshops = async () => {
+      const allPetshops = await getAllPetshops();
+      setPetshops(allPetshops);
+    };
+
+    fetchPetshops();
+
     if (showChoosePetshop) {
       showPetshop();
     }
