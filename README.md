@@ -2,7 +2,11 @@
 
 ## Como rodar o projeto?
 
-Clique no link: https://softruck-frontend.vercel.app/
+### Frontend:
+
+1) No repositporio baixar o projeto no botão "Code" e depois "Download ZIP".
+2) No terminal digitar "cd frontend" pressionar Enter e depois digitar "npm i" e prssionar novamente o Enter.
+3) No terminal executar  o comando "npm run dev" e no navegador digitar "
 
 ## Tecnologias utilizadas:
 
