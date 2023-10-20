@@ -14,7 +14,6 @@ const ModalPetshop = () => {
   const [petshops, setPetshops] = useState<Petshop[]>([]);
   const [bestNamePetshops, setBestNamePetshops] = useState('');
   const [bestValuePetshop, setBestValuePetshops] = useState(0);
-  const [distancePetshops, setDistancePetshops] = useState(0);
 
   useEffect(() => {
     setPetshops(database);
@@ -77,8 +76,8 @@ const ModalPetshop = () => {
 
       petshops.forEach((petshop) => {
         valuesOfPetshops.push(
-          qtdLittleDogs * petshop.priceOfWeekeendToLittleDogs +
-            qtdBigDogs * petshop.priceOfWeekeendToBigDogs
+          qtdLittleDogs * petshop.priceOfWeekToLittleDogs +
+            qtdBigDogs * petshop.priceOfWeekToBigDogs
         );
       });
 
@@ -86,12 +85,8 @@ const ModalPetshop = () => {
 
       const cheapPetShop: Petshop[] = [];
 
-      petshops.forEach((petshop) => {
-        const petshopMin =
-          qtdLittleDogs * petshop.priceOfWeekToLittleDogs +
-          qtdBigDogs * petshop.priceOfWeekToBigDogs;
-
-        if (petshopMin === minValue) {
+      petshops.forEach((petshop, i) => {
+        if (valuesOfPetshops[i] === minValue) {
           cheapPetShop.push(petshop);
         }
       });
@@ -102,14 +97,19 @@ const ModalPetshop = () => {
         setBestNamePetshops(petshops[indexBestPetshop].name);
         setBestValuePetshops(minValue);
       } else {
-        setDistancePetshops(cheapPetShop[1].distance);
+        const DistancePetshop: number[] = [];
         cheapPetShop.forEach((petshop) => {
-          if (petshop.distance < distancePetshops) {
-            setBestNamePetshops(petshop.name);
-            setDistancePetshops(petshop.distance);
-            setBestValuePetshops(minValue);
-          }
+          DistancePetshop.push(petshop.distance);
         });
+
+        const minDistance = Math.min(...DistancePetshop);
+
+        const bestPetshopClose = petshops.filter(
+          (petshop) => petshop.distance === minDistance
+        );
+
+        setBestNamePetshops(bestPetshopClose[0].name);
+        setBestValuePetshops(minValue);
       }
     }
   };
